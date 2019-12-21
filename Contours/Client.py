@@ -1,13 +1,12 @@
 import socket
 import select
 import errno
-import threading
-import sys
+import contornoBeta
 
 HEADER_LENGTH = 10
 IP = "localhost"
 PORT = 50000
-my_username = "client"
+my_username = "contours"
 
 # Crear un socket 
 # socket.AF_INET - familia de direcciones, IPv4, algunos otros posibles son AF_INET6, AF_BLUETOOTH, AF_UNIX 
@@ -49,7 +48,10 @@ def start_connection():
             message = client_socket.recv(message_length).decode('utf-8')
 
             # Imprimir mensaje
+            contornoBeta.start()
             print(f'{username} > {message}')
+            client_socket.close()
+
 
         except IOError as e:
             # Esto es normal en conexiones que no bloquean - cuando no hay error de datos entrantes va a aparecer 
@@ -75,5 +77,4 @@ def refresh():
         message = message.encode('utf-8')
         message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
         client_socket.send(message_header + message)
-        client_socket.close()
 
