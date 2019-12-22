@@ -1,6 +1,6 @@
 import cv2
 font =cv2.FONT_HERSHEY_COMPLEX
-imgn =cv2.imread('figuras3.jpg')
+imgn =cv2.imread('figuras.jpg')
 img=cv2.resize(imgn,(640,480))
 
 gris=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -22,11 +22,13 @@ for c in cnts:
 
     if len(approx)==10:
         cv2.putText(img,"ESTRELLA",(x,y), font,0.4,(0))
-    elif len(approx)==6:
+    elif len(approx)==8:
         cv2.putText(img,"figura T",(x,y), font,0.4,(0))
+    elif len(approx)==16:
+        cv2.putText(img,"figura 8",(x,y), font,0.4,(0))
     print(len(approx))
-  #  cv2.drawContours(img,[approx],0,(255,0,0),2)
-cv2.drawContours(img,cnts,-1,(255,0,0),2)
-cv2.imshow('imagen',img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    cv2.drawContours(img,[approx],0,(0,0,0),2)
+#cv2.drawContours(img,cnts,-1,(0,0,0),2)
+    cv2.imshow('imagen',img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
