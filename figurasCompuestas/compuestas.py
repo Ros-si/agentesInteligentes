@@ -1,4 +1,5 @@
 import cv2
+
 font =cv2.FONT_HERSHEY_COMPLEX
 imgn =cv2.imread('figuras.jpg')
 img=cv2.resize(imgn,(640,480))
@@ -6,7 +7,7 @@ img=cv2.resize(imgn,(640,480))
 gris=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 _,th=cv2.threshold(gris,240,255,cv2.THRESH_BINARY_INV)
 
-_,cnts,_=cv2.findContours(th,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+cnts, _ = cv2.findContours(th, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
 
 #cv2.drawContours(img,cnts,-1,(255,0,0),2)

@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-
+print (cv2.__version__)
 def start():
     imagen = cv2.imread("../img/figura.jpg")
     w, h = imagen.shape[:2]
@@ -21,11 +21,11 @@ def start():
     cv2.waitKey(0)
     #Para OpenCV 3
     cnts,_ = cv2.findContours(th, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        #Para OpenCV 4
-        #cnts,_ = cv2.findContours(th, cv2.RETR_EXTERNAL,
-        #  cv2.CHAIN_APPROX_SIMPLE)
-        #cv2.drawContours(imagen, cnts, -1, (255,0,0),2)
-        #print('Contornos: ', len(cnts))
+    #Para OpenCV 4
+    #cnts,_ = cv2.findContours(th, cv2.RETR_EXTERNAL,
+    #  cv2.CHAIN_APPROX_SIMPLE)
+    #cv2.drawContours(imagen, cnts, -1, (255,0,0),2)
+    #print('Contornos: ', len(cnts))
     font = cv2.FONT_HERSHEY_SIMPLEX
     i=0
     for c in cnts:
