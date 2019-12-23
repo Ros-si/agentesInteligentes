@@ -1,14 +1,13 @@
 import socket
 import select
 import errno
-#import threading
-import contornoBeta
+import compuestas
 import sys
 
 HEADER_LENGTH = 40
 IP = "localhost"
 PORT = 50000
-my_username = "contours"
+my_username = "compuestas"
 
 # Crear un socket 
 # socket.AF_INET - familia de direcciones, IPv4, algunos otros posibles son AF_INET6, AF_BLUETOOTH, AF_UNIX 
@@ -50,7 +49,7 @@ def start_connection():
             message = client_socket.recv(message_length).decode('utf-8')
 
             # Imprimir mensaje
-            contornoBeta.start(message)
+            compuestas.start(message)
             
             print(f'{username} > {message}')
             #client_socket.close()

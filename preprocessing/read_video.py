@@ -5,8 +5,8 @@ import glob
 import Client
 import threading
 
-x = threading.Thread(target=Client.start_connection)
-x.start()
+Client.start_connection
+
 
 files = glob.glob('img_video/*') 
 for f in files: 
@@ -18,9 +18,12 @@ vidcap = cv2.VideoCapture('video.mp4')
 def comparar(img1,img2,img_out):
     image_difference = CompareImage.compare_image(img1,img2)
     if( image_difference > 0.006):
+        img_out = img_out[:, 240:-240]
         path = "../img/image"+str(count)+".jpg"
-        cv2.imwrite(path, img_out) 
-        Client.refresh(path)
+        cv2.imwrite(path, img_out)
+        print(path) 
+        x = threading.Thread(target=Client.refresh(path))
+        x.start()
 
 def getFrame(sec):
     vidcap.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
@@ -32,7 +35,12 @@ def getFrame(sec):
         if(count > 1):
             comparar("img_video/image"+str(count-1)+".0.jpg","img_video/image"+str(count)+".0.jpg",image)
         else:
-            cv2.imwrite("../img/image"+str(count)+".jpg", image) 
+            image = image[:, 240:-240]
+            path = "../img/image"+str(count)+".jpg"
+            cv2.imwrite(path, image) 
+            print(path) 
+            x = threading.Thread(target=Client.refresh(path))
+            x.start()
     return hasFrames
 
 sec = 0

@@ -1,7 +1,7 @@
 import socket
 import select
 
-HEADER_LENGTH = 10
+HEADER_LENGTH = 40
 
 IP = "localhost"
 PORT = 50000

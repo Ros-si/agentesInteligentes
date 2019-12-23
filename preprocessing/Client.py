@@ -4,10 +4,10 @@ import errno
 import threading
 import sys
 
-HEADER_LENGTH = 10
+HEADER_LENGTH = 40
 IP = "localhost"
 PORT = 50000
-my_username = "client"
+my_username = "read_video"
 
 # Crear un socket 
 # socket.AF_INET - familia de direcciones, IPv4, algunos otros posibles son AF_INET6, AF_BLUETOOTH, AF_UNIX 
@@ -72,5 +72,5 @@ def refresh(path_img):
         message = message.encode('utf-8')
         message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
         client_socket.send(message_header + message)
-        client_socket.close()
+        #client_socket.close()
 

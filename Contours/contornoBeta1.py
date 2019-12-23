@@ -3,11 +3,11 @@ import numpy as np
 
 def start(path_img):
     imagen = cv2.imread(path_img)
-    blues = imagen[:,:,0]
     w, h = imagen.shape[:2]
     scala = 600 / w
     w = round(w * scala)
     h = round(h * scala)
+    blues = imagen[:,:,0]
     bgr = cv2.resize(imagen,(h, w))
     cv2.imwrite("./nuevo.jpg", bgr)
     grises = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
@@ -18,8 +18,13 @@ def start(path_img):
     _, th_blues = cv2.threshold(blues, 40, 200, cv2.THRESH_BINARY_INV)
     cv2.imshow('th', th2)
     cv2.waitKey(0)
+    #Para OpenCV 3
     cnts,_ = cv2.findContours(th, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
+    #Para OpenCV 4
+    #cnts,_ = cv2.findContours(th, cv2.RETR_EXTERNAL,
+    #  cv2.CHAIN_APPROX_SIMPLE)
+    #cv2.drawContours(imagen, cnts, -1, (255,0,0),2)
+    #print('Contornos: ', len(cnts))
     font = cv2.FONT_HERSHEY_SIMPLEX
     i=0
     for c in cnts:
