@@ -64,13 +64,10 @@ def start_connection():
         continue
 
 
-def refresh():
-    # Espere a que el usuario ingrese un mensaje 
-    message = input(f'{my_username} > ')
-
+def refresh(path_img):
+    message = path_img
     # Si el mensaje no está vacío, envíelo si el mensaje :
     if message:
-        
         # Codifique el mensaje en bytes, prepare el encabezado y convierta a bytes, como el nombre de usuario anterior, luego envíe 
         message = message.encode('utf-8')
         message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')

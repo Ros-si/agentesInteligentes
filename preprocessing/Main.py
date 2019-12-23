@@ -1,6 +1,7 @@
 import cv2
 import Client
 import threading
+import read_video
 
 x = threading.Thread(target=Client.start_connection)
 x.start()

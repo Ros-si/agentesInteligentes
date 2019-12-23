@@ -48,7 +48,7 @@ def start_connection():
             message = client_socket.recv(message_length).decode('utf-8')
 
             # Imprimir mensaje
-            contornoBeta.start()
+            contornoBeta.start(message)
             print(f'{username} > {message}')
             client_socket.close()
 

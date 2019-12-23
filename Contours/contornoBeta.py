@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 
 print (cv2.__version__)
-def start():
-    imagen = cv2.imread("../img/figura.jpg")
+def start(path_img):
+    imagen = cv2.imread(path_img)
     w, h = imagen.shape[:2]
     scala = 600 / w
     w = round(w * scala)
